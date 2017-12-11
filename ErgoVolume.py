@@ -1,5 +1,5 @@
 from pynput import keyboard
-from pycaw.pycaw import AudioUtilities, ISimpleAudioVolume
+from pycaw.pycaw import AudioUtilities
 
 
 class AudioController(object):
@@ -48,7 +48,8 @@ class AudioController(object):
                 interface = session.SimpleAudioVolume
 
                 # 0.0 is the min value, reduce by decibels
-                volume = max(0.0, interface.GetMasterVolume() - self.VOLUME_DELTA)
+                volume = max(0.0, interface.GetMasterVolume() -
+                             self.VOLUME_DELTA)
                 interface.SetMasterVolume(volume, None)
         except OSError as e:
             print(e)
@@ -60,7 +61,8 @@ class AudioController(object):
                 interface = session.SimpleAudioVolume
 
                 # 1.0 is the max value, raise by decibels
-                volume = min(1.0, interface.GetMasterVolume() + self.VOLUME_DELTA)
+                volume = min(1.0, interface.GetMasterVolume() +
+                             self.VOLUME_DELTA)
                 interface.SetMasterVolume(volume, None)
         except OSError as e:
             print(e)
